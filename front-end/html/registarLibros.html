@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Libro</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="../js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
+<style>
+  .ball {
+  position: absolute;
+  border-radius: 100%;
+  opacity: 0.7;
+}
+</style>
+<body style="background-color: black;">
+  <div class="container-fluid">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div class="container">
+          <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <a href="../html/index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+              <img src="../img/Texto_del_párrafo__2_-removebg-preview.png" alt="" width="20%">
+            </a>
+            <ul class="nav nav-pills" style="margin-top: 3%;">
+              <li class="nav-item active"><a href="../html/listaLibros.html" class="nav-link" style="color: white; font-size: 22px;">Libros</a></li>
+              <li class="nav-item"><a href="../html/listaUsuarios.html" class="nav-link" style="color: white; font-size: 22px;">Usuarios</a></li>
+              <li class="nav-item"><a href="../html/listaPrestamos.html" class="nav-link" style="color: white; font-size: 22px;">Prestamos</a></li>
+              <li class="nav-item"><a href="../html/listaMultas.html" class="nav-link" style="color: white; font-size: 22px;">Multas</a></li>
+            </ul>
+          </header>
+        </div>
+      </header>
+
+      <div class="container" style="margin-top: 7%;">
+        <h1 style="color: white;"><b>Registar Libro</b></h1>
+      </div>
+      
+      <div class="container">
+        <div class="row">
+            <div class="col col-xl-4 col-12" style="padding-top: 5%; font-size: 25px;">
+                <label for="" style="color: white;">Título</label>
+                <input type="text" id="titulo"  step="1" class="form-control" onfocusout="validarTitulo(this);">
+            </div>
+            <div class="col col-xl-4 col-12" style="padding-top:5%; font-size: 25px;">
+                <label for="" style="color: white;">Autor</label>
+                <input type="text" id="autor" class="form-control" onfocusout="validarAutor(this);">
+            </div>
+            <div class="col col-xl-4 col-12" style="padding-top:5%; font-size: 25px;">
+                <label for="" style="color: white;">ISBN</label>
+                <input type="text" id="isbn" class="form-control" onfocusout="validarISBN(this);">
+            </div>
+            <div class="col col-xl-6 col-12" style="padding-top:3%; font-size: 25px;">
+                <label for="" style="color: white;">Género</label>
+                <input type="text" id="genero" class="form-control" onfocusout="validarGenero(this);">
+            </div>
+            <div class="col col-xl-3 col-12" style="padding-top:3%; font-size: 25px;">
+                <label for="" style="color: white;"># Ejemplares disponibles</label>
+                <input type="number" id="num_ejemplares_dispo" class="form-control" onfocusout="validarNumEjempDispo(this);">
+            </div>
+            <div class="col col-xl-3 col-12" style="padding-top:3%; font-size: 25px;">
+                <label for="" style="color: white;"># Ejemplares ocupados</label>
+                <input type="number" id="num_ejemplares_ocupados" class="form-control" onfocusout="validarNumEjempOcup(this);">
+            </div>
+      </div>
+      <div class="modal-footer">
+        <div class="col-6" style="padding-top: 3%;">
+          <p style="color: white;">Llena todos campos para registrar el libro de manera exitosa*</p>
+      </div>
+        <div class="buttom col-6" style="padding-top: 3%">
+          <button class="btn btn-secondary" onclick="limpiar();" style="margin-left: 73%;">Limpiar</button>
+          <button class="btn btn-success" onclick="registrarLibro();">Registrar</button>
+      </div>
+      <script>
+        const colors = ["#3CC157", "#2AA7FF", "#1B1B1B", "#FCBC0F", "#F85F36"];
+
+const numBalls = 50;
+const balls = [];
+
+for (let i = 0; i < numBalls; i++) {
+  let ball = document.createElement("div");
+  ball.classList.add("ball");
+  ball.style.background = colors[Math.floor(Math.random() * colors.length)];
+  ball.style.left = `${Math.floor(Math.random() * 100)}vw`;
+  ball.style.top = `${Math.floor(Math.random() * 100)}vh`;
+  ball.style.transform = `scale(${Math.random()})`;
+  ball.style.width = `${Math.random()}em`;
+  ball.style.height = ball.style.width;
+  
+  balls.push(ball);
+  document.body.append(ball);
+}
+
+// Keyframes
+balls.forEach((el, i, ra) => {
+  let to = {
+    x: Math.random() * (i % 2 === 0 ? -11 : 11),
+    y: Math.random() * 12
+  };
+
+  let anim = el.animate(
+    [
+      { transform: "translate(0, 0)" },
+      { transform: `translate(${to.x}rem, ${to.y}rem)` }
+    ],
+    {
+      duration: (Math.random() + 1) * 2000,
+      direction: "alternate",
+      fill: "both",
+      iterations: Infinity,
+      easing: "ease-in-out"
+    }
+  );
+});
+      </script>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <script src="../js/libro.js"></script>
+</body>
+</html>
